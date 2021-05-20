@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import {addOne, ADD_ONE, APPLY_NUMBER } from './actions/index'; 
+import {addOne, ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION } from './actions/index'; 
 import './App.css';
 import reducer, { initialState } from './reducers/index';
 import TotalDisplay from './components/TotalDisplay';
@@ -12,6 +12,9 @@ const numberClick = (n) => {
   dispatch({type:APPLY_NUMBER, payload:n})
 } 
 
+const operatorChange = (operator) => {
+  dispatch({type:CHANGE_OPERATION, payload:operator})
+}
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -53,9 +56,9 @@ const numberClick = (n) => {
             </div>
 
             <div className="row">
-              <CalcButton value={"+"}/>
-              <CalcButton value={"*"}/>
-              <CalcButton value={"-"}/>
+              <CalcButton value={"+"} onClick={operatorChange}/>
+              <CalcButton value={"*"} onClick={operatorChange}/>
+              <CalcButton value={"-"}onClick={operatorChange}/>
             </div>
 
             <div className="row ce_button">
