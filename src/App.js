@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import {addOne, ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION, CLEAR_DISPLAY} from './actions/index'; 
+import {addOne, ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION, CLEAR_DISPLAY, SET_MEMORY, ADD_MEMORY, MEMORY_RESET} from './actions/index'; 
 import './App.css';
 import reducer, { initialState } from './reducers/index';
 import TotalDisplay from './components/TotalDisplay';
@@ -19,6 +19,17 @@ const operatorChange = (operator) => {
 const clearScreen = () => {
   dispatch({type:CLEAR_DISPLAY})
 }
+const setMemory = () => {
+  dispatch({type:SET_MEMORY})
+}
+
+const addMemory = () => {
+  dispatch({type:ADD_MEMORY})
+}
+
+const resetMemory = () => {
+  dispatch({type:MEMORY_RESET})
+}
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -36,9 +47,9 @@ const clearScreen = () => {
             </div>
             
             <div className="row">
-              <CalcButton value={"M+"}/>
-              <CalcButton value={"MR"}/>
-              <CalcButton value={"MC"}/>
+              <CalcButton value={"M+"} onClick={setMemory}/>
+              <CalcButton value={"MR"} onClick={addMemory}/>
+              <CalcButton value={"MC"} onClick={resetMemory}/>
             </div>
 
             <div className="row">
