@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import {addOne, ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION } from './actions/index'; 
+import {addOne, ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION, CLEAR_DISPLAY} from './actions/index'; 
 import './App.css';
 import reducer, { initialState } from './reducers/index';
 import TotalDisplay from './components/TotalDisplay';
@@ -14,6 +14,10 @@ const numberClick = (n) => {
 
 const operatorChange = (operator) => {
   dispatch({type:CHANGE_OPERATION, payload:operator})
+}
+
+const clearScreen = () => {
+  dispatch({type:CLEAR_DISPLAY})
 }
   return (
     <div className="App">
@@ -58,11 +62,11 @@ const operatorChange = (operator) => {
             <div className="row">
               <CalcButton value={"+"} onClick={operatorChange}/>
               <CalcButton value={"*"} onClick={operatorChange}/>
-              <CalcButton value={"-"}onClick={operatorChange}/>
+              <CalcButton value={"-"} onClick={operatorChange}/>
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"}/>
+              <CalcButton value={"CE"} onClick={clearScreen}/>
             </div>
 
           </form>
